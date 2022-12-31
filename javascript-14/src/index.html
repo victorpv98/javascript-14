@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Javascript14</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <app-root></app-root>
+    <h1>Calculadora de salario</h1>
+    <form>
+      <label for="codigoEmpleado">Código del empleado:</label><br />
+      <input type="text" id="codigoEmpleado" name="codigoEmpleado" /><br />
+      <label for="horasTrabajadas">Número de horas trabajadas:</label><br />
+      <input type="number" id="horasTrabajadas" name="horasTrabajadas" /><br />
+      <label for="tarifaHora">Tarifa por hora:</label><br />
+      <input type="number" id="tarifaHora" name="tarifaHora" /><br /><br />
+      <button type="button" onclick="calcularSalario()">
+        Calcular salario
+      </button>
+    </form>
+    <br />
+    <p>Salario bruto: <span id="salarioBruto"></span></p>
+    <p>Descuento: <span id="descuento"></span></p>
+    <p>Salario neto: <span id="salarioNeto"></span></p>
+
+    <script>
+      function calcularSalario() {
+        var codigoEmpleado = document.getElementById("codigoEmpleado").value;
+        var horasTrabajadas = document.getElementById("horasTrabajadas").value;
+        var tarifaHora = document.getElementById("tarifaHora").value;
+
+        var salarioBruto = horasTrabajadas * tarifaHora;
+
+        var descuento = 0;
+        if (salarioBruto < 500) {
+          descuento = 0;
+        } else if (salarioBruto >= 501 && salarioBruto <= 1000) {
+          descuento = salarioBruto * 0.02;
+        } else if (salarioBruto >= 1001 && salarioBruto <= 4000) {
+          descuento = salarioBruto * 0.08;
+        } else if (salarioBruto >= 4001 && salarioBruto <= 8000) {
+          descuento = salarioBruto * 0.15;
+        } else if (salarioBruto >= 8001 && salarioBruto <= 10000) {
+          descuento = salarioBruto * 0.21;
+        } else {
+          descuento = salarioBruto * 0.3;
+        }
+
+        var salarioNeto = salarioBruto - descuento;
+
+        document.getElementById("salarioBruto").innerHTML = salarioBruto;
+        document.getElementById("descuento").innerHTML = descuento;
+        document.getElementById("salarioNeto").innerHTML = salarioNeto;
+      }
+    </script>
+  </body>
+</html>
